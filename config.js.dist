@@ -1,0 +1,9 @@
+config = {
+    rabbitmq: {
+        url: 'amqp://guest:guest@localhost',
+        durable: false,
+        persistent: false
+    }
+};
+
+module.exports = config;

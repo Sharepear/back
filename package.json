@@ -9,9 +9,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "phash-image": "^3.1.0",
-    "restify": "^3.0.1",
-    "toobusy": "^0.2.4"
+    "amqplib": "0.3.2",
+    "phash-image": "3.1.0",
+    "restify": "3.0.1",
+    "toobusy": "0.2.4",
+    "when": "3.7.2"
   },
   "devDependencies": {
     "ngrok": "^0.1.99"

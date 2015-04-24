@@ -1,5 +1,6 @@
 var restify = require('restify');
 var toobusy = require('toobusy');
+var pictureNew = require("./rabbitmq/publishers/pictureNew");
 
 var _check_if_busy = function(req, res, next) {
     if (toobusy()) {
@@ -31,8 +32,9 @@ server.use(restify.gzipResponse());
  * route
  */
 server.post('/upload', function(req, res, next) {
-    var filename = req.files.file.path;
-    res.send({name: filename});
+    var filePath = req.files.file.path;
+    pictureNew.publish(filePath);
+    res.send({name: filePath});
     next();
 });
 
