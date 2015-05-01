@@ -1,5 +1,6 @@
 var restify = require('restify');
 var toobusy = require('toobusy');
+var config = require('../config');
 var pictureNew = require("./rabbitmq/publishers/pictureNew");
 
 var _check_if_busy = function(req, res, next) {
@@ -22,8 +23,11 @@ server.pre(restify.pre.userAgentConnection());
 server.use(_check_if_busy);
 server.use(restify.acceptParser(server.acceptable));
 server.use(restify.bodyParser({
-    uploadDir: 'upload'
+    uploadDir: 'upload',
+    mapParams: false,
+    keepExtensions: true
 }));
+server.use(restify.authorizationParser());
 server.use(restify.queryParser());
 server.use(restify.fullResponse());
 server.use(restify.gzipResponse());
@@ -31,7 +35,7 @@ server.use(restify.gzipResponse());
 /**
  * route
  */
-server.post('/upload', function(req, res, next) {
+server.post(config.sharepear.uploadPath, function(req, res, next) {
     var filePath = req.files.file.path;
     pictureNew.publish(filePath);
     res.send({name: filePath});
@@ -41,3 +45,5 @@ server.post('/upload', function(req, res, next) {
 server.listen(8080, function() {
     console.log('%s listening at %s', server.name, server.url);
 });
+
+//restifyOAuth2.ropc(server, options);

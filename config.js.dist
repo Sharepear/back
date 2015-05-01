@@ -1,4 +1,13 @@
 config = {
+    sharepear: {
+        dirname: __dirname,
+        uploadPath: '/upload',
+        resizePath: '/resize',
+        size: {
+            small: 512,
+            big: 2048
+        }
+    },
     rabbitmq: {
         url: 'amqp://guest:guest@localhost',
         durable: false,

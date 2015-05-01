@@ -22,4 +22,14 @@ Clone this repo and execute in your favourite shell:
 
 After completing installation type in your favourite shell:
 
-* `node src/app.js` to start a this app.
+* `node src/app.js` to start this app.
+
+
+## TODO
+
+[ ] Add rabbitmq event when a picture is upload
+[ ] Add rabbitmq queue
+[ ] Create big picture (2048 max height or width)
+[ ] Create small picture
+[ ] Create blur picture
+[ ] Add Oauth authentification
